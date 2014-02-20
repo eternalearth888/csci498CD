@@ -1,0 +1,22 @@
+==================================
+Page 107, Problem 6
+----------------------------------
+
+Write a regular expression that defines a C-like comment delimited by
+rand*/. Individual *'sand/'s may appear in the comment body, but
+the pair *I may not.
+
+----------------------------------
+
+==================================
+Page 111, Problem 23
+----------------------------------
+
+Write a Lex program that examines the words in an ASCII file and lists
+the ten most frequently used words. Your program should ignore case
+and should ignore words that appear in a predefined "don't care" list.
+What changes in your program are needed to make it recognize singular
+and plural nouns (for example, cat and cats) as the same word? How
+about different verb tenses (walk versus walked versus walking)?
+
+----------------------------------

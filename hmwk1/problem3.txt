@@ -1,7 +1,15 @@
 =================================
 3. Page 110, Problem 19
-----------------------------------
-	No; If the original set ends with a * or + and Rev(R) reverses
-	the sequence of characters, then that means that * or + would be at
-	the beginning of the new sequence and thus be in an invalid set.
+---------------------------------
+
+Let Rev be the operator that reverses the sequence of characters within
+a string. For example, Rev(abc) = cba. Let R be any regular expression.
+Rev(R) is the set of strings denoted by R, with each string reversed. Is
+Rev(R) a regular set? Why or why not?
+
+---------------------------------
+
+No; If the original set ends with a * or + and Rev(R) reverses
+the sequence of characters, then that means that * or + would be at
+the beginning of the new sequence and thus be in an invalid set.
 

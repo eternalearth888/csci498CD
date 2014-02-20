@@ -2,6 +2,13 @@
 2. Page 106, Problem 4
 ----------------------------------
 
+Write DFAs that recognize the tokens defined by the following regular
+expressions:
+(a) (al(bc)*dt
+(b) ((O l1)*(213t) I 0011
+(c) (a Not(a))*aaa
+
+---------------------------------
 a) (a | (bc)* d)+
 
   |	a | b | c | d |

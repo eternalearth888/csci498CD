@@ -1,6 +1,23 @@
 ==================================
 1. Page 106, Problem 1
 ----------------------------------
+Assume the following text is presented to a C scanner:
+main() {
+	const float payment = 384.00;
+	float bal;
+	int month = 0;
+	bal= 15000;
+	while (bal>0){
+		printf("Month: %2d Balance:	%10.2f\n", month, bal);
+		bal=bal-payment+0.015* bal;
+		month=month+l;
+	}
+}
+What token sequence is produced? For which tokens must extra infor-
+mation be returned in addition to the token code?
+
+----------------------------------
+
 id
 
 open paren
