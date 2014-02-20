@@ -379,7 +379,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[29] =
     {   0,
-        0,    0,    7,    1,    4,    6,    1,    5,    1,    4,
+        0,    0,    7,    1,    4,    4,    1,    5,    1,    4,
         1,    1,    1,    0,    0,    1,    1,    1,    0,    2,
         0,    1,    0,    0,    1,    1,    3,    0
     } ;
@@ -418,21 +418,23 @@ static yyconst flex_int32_t yy_ec[256] =
 
 static yyconst flex_int32_t yy_meta[8] =
     {   0,
-        1,    2,    2,    1,    1,    1,    2
+        1,    2,    2,    1,    1,    1,    3
     } ;
 
-static yyconst flex_int16_t yy_base[31] =
+static yyconst flex_int16_t yy_base[32] =
     {   0,
-        0,    0,   51,    0,   48,   52,    3,   52,    0,   47,
-        9,   16,    0,   23,    0,    0,   30,    0,   45,   52,
-       37,    0,    0,    0,    0,    0,   52,   52,   46,   44
+        0,    0,   51,    0,    0,    0,    3,   52,    0,    0,
+        9,   16,    0,   23,    0,    0,   30,    0,   47,   52,
+       37,    0,    0,    0,    0,    0,   52,   52,   48,   46,
+       44
     } ;
 
-static yyconst flex_int16_t yy_def[31] =
+static yyconst flex_int16_t yy_def[32] =
     {   0,
-       28,    1,   28,   29,   28,   28,   29,   28,   29,   28,
-       28,   28,   11,   28,   14,   11,   28,   12,   30,   28,
-       28,   11,   14,   14,   11,   29,   28,    0,   28,   28
+       28,    1,   28,   29,   30,   30,   29,   28,   29,   30,
+       28,   28,   11,   28,   14,   11,   28,   12,   31,   28,
+       28,   11,   14,   14,   11,   29,   28,    0,   28,   28,
+       28
     } ;
 
 static yyconst flex_int16_t yy_nxt[60] =
@@ -441,7 +443,7 @@ static yyconst flex_int16_t yy_nxt[60] =
        14,   15,   16,   17,   13,   14,   18,   19,   20,   18,
        18,   18,   19,   14,   14,   15,   15,   21,   14,   14,
        22,   23,   24,   25,   17,   26,   23,   23,   23,   24,
-       24,   21,   27,   23,   19,   19,    9,   20,   10,   10,
+       24,   21,   27,   23,   19,   19,   19,   10,    9,   20,
        28,    3,   28,   28,   28,   28,   28,   28,   28
     } ;
 
@@ -451,7 +453,7 @@ static yyconst flex_int16_t yy_chk[60] =
        11,   11,   11,   11,   11,   11,   12,   12,   12,   12,
        12,   12,   12,   14,   14,   14,   14,   14,   14,   14,
        17,   17,   17,   17,   17,   17,   17,   21,   21,   21,
-       21,   21,   21,   21,   30,   30,   29,   19,   10,    5,
+       21,   21,   21,   21,   31,   31,   31,   30,   29,   19,
         3,   28,   28,   28,   28,   28,   28,   28,   28
     } ;
 
@@ -495,7 +497,7 @@ C/C++ functions
 #line 25 "scanner.l"
 const int NUMBER=1;    /* 0 reserved for EOF! */
 const int NOTNUMBER=2;
-#line 499 "lex.yy.c"
+#line 501 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -685,7 +687,7 @@ YY_DECL
 #line 33 "scanner.l"
 
 
-#line 689 "lex.yy.c"
+#line 691 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -786,6 +788,7 @@ YY_RULE_SETUP
 {;} /*block comments*/
 	YY_BREAK
 case 4:
+/* rule 4 can match eol */
 YY_RULE_SETUP
 #line 39 "scanner.l"
 {;}		/* ignore white space */
@@ -800,7 +803,7 @@ YY_RULE_SETUP
 #line 42 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 804 "lex.yy.c"
+#line 807 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

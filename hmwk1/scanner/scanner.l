@@ -36,7 +36,7 @@ SPACE       [ \t\n]
 
 \/\/.*[\n]   {;}  /* end of line comments */
 \/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/ {;} /*block comments*/
-[ \t]+	{;}		/* ignore white space */
+[ \t\n]+	{;}		/* ignore white space */
 .	return yytext[0]; /* everything else */
 
 %%
