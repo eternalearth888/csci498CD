@@ -1,0 +1,33 @@
+Maria Deslis
+csci498 - CompilerDesign - Hellman
+Spring 2014
+Assignment 1 - Lexing
+==================================
+1. Page 106, Problem 1
+
+id
+
+open paren
+close paren
+
+open bracket
+
+const type id
+type id
+type id
+operation integer
+
+while
+open paren
+id operation integer
+close paren
+open bracket
+
+id
+operation
+operation
+
+close bracket
+close bracket
+
+==================================
