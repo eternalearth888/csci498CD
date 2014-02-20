@@ -4,7 +4,7 @@
 
 <BOF>
 {%
-C/C++ includes, decls and defs
+C/C+dd+ includes, decls and defs
 %}
 
 flex declarations
@@ -22,6 +22,7 @@ C/C++ functions
  ******************************************************/
 
 %{
+#include <fstream>
 const int NUMBER=1;    /* 0 reserved for EOF! */
 const int NOTNUMBER=2;
 %}
@@ -46,18 +47,15 @@ void token_handler();
 int main(int argc, char ** argv)
 {
 
-	/*skip over program name*/
-	if ( argc > 0 ) {
-		if (argv[1] && !argv[2]) {
-			yyin = fopen ( argv[1], "r");
-			token_handler();
-		} else if(argv[1] && argv[2]) {
-			yyin = fopen ( argv[2], "r");
-			token_handler();
-		}
-	} else {
-		yyin = stdin;
+	/*create the file for output*/
+	ofstream myData("ignore_output.txt");
+
+
+	/*if ignore exists, open it*/
+	if((yyin = fopen( "IGNORE", "r")) == null) {
+			yyin = stdin;
 	}
+	token_handler();
 
 	return 0;
 }
@@ -65,3 +63,5 @@ int main(int argc, char ** argv)
 yyerror(char *errmsg) {
 	fprintf(stderr, "%s\n", errmsg);
 }
+
+
