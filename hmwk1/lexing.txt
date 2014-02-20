@@ -84,6 +84,9 @@ c) (a Not(a))*)aaa
 ==================================
 3. Page 110, Problem 19
 ----------------------------------
+	No; If the original set ends with a * or + and Rev(R) reverses
+the sequence of characters, then that means that * or + would be at
+the beginning of the new sequence and thus be in an invalid set.
 
 ==================================
 4. Page 107/111, Problem 6/23
