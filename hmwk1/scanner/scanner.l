@@ -37,15 +37,27 @@ SPACE       [ \t\n]
 
 \/\/.*[\n]   {;} 
 \/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/ {;}
+[ \t\n]+ 
 
 %%
 
 void token_handler();
 
-main()
+int main(int argc, char ** argv)
 {
+	++argv, --argc;
+	/* read in a file */
+	if (argc > 0) {
+		yyin = fopen(argv[0], "r");
+	} else {
+		yyin = stdin;
+	}
+
 	/* token handling code here */
 	token_handler();
 	return 0;
 }
 
+yyerror(char *errmsg) {
+	fprintf(stderr, "%s\n", errmsg);
+}
