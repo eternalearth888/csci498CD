@@ -26,18 +26,18 @@ const int NUMBER=1;    /* 0 reserved for EOF! */
 const int NOTNUMBER=2;
 %}
 
-DIGITS		[0-9]
+DIGIT		[0-9]
+LETTERS [a-zA-Z_]
 SPACE       [ \t\n]
 
 %%
 
-{SPACE}+               { }
-{DIGITS}+              { return NUMBER; }
 [^ \t\n0-9]+           { return NOTNUMBER; }
 
-\/\/.*[\n]   {;} 
-\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/ {;}
-[ \t\n]+ 
+\/\/.*[\n]   {;}  /* end of line comments */
+\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/ {;} /*block comments*/
+[ \t]+	{;}		/* ignore white space */
+.	return yytext[0]; /* everything else */
 
 %%
 
@@ -52,6 +52,7 @@ int main(int argc, char ** argv)
 	} else {
 		yyin = stdin;
 	}
+//	yylex();
 
 	/* token handling code here */
 	token_handler();
