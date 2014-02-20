@@ -42,6 +42,7 @@ SPACE       [ \t\n]
 %%
 
 void token_handler();
+void readMainMenu();
 
 int main(int argc, char ** argv)
 {
@@ -50,50 +51,75 @@ int main(int argc, char ** argv)
 	FILE *inputFile;
 	char *userFile;
 
-	/* file output creation */
 	FILE *outputFile;
-	outputFile = fopen("ignore_output.txt", "a+");
+
+	outputFile = fopen("OUTPUT", "a+");
 
 	if (outputFile == NULL) {
 		printf("ERROR: Could not create output file.\n");
 		exit(-1);
 	}
 
+
 	/*if ignore exists, open it*/
-	if (argc <= 1) {
-			printf("Please choose one of the following:\n");
-			printf("(1) Simply read from stdin/user input.\n");
-			printf("(2) Read from file.\n");
-			
-			scanf("%d", &choice);
+	FILE *ignoreFile;
+	ignoreFile = fopen("IGNORE", "r");
+	if (ignoreFile != NULL) {
+		if (argc <= 1) {
 
-			if (choice == 1) {
-					puts("---------------------------");
-					puts("Type all you want, then Ctrl+C to exit");
-					puts("---------------------------");
-				yyin = stdin;
-			} else if (choice == 2) {
-					printf("%s", "Please input file name: ");
-					scanf("%s", userFile);
+				readMainMenu();
+				printf("CHOICE: ");
+				scanf("%d", &choice);
 
-					inputFile = fopen(userFile, "r");
+				if (choice == 1) {
+					printf("TO EXIT: Ctrl+C");
+					yyin = stdin;
+				} else if (choice == 2) {
+						printf("%s", "Please input file name: ");
+						scanf("%s", userFile);
 
-					if (inputFile == NULL) {
-						printf("ERROR: Could not open file or file does not exist.\n");
-						exit(-1);
-					} else {
-						yyin = fopen(userFile, "r");
-					}
-			} else {
-				puts("not a valid option");
-			}
+						inputFile = fopen(userFile, "r");
 
-	} else if (argc > 1) {
-		printf("Please implement me\n");
+						if (inputFile == NULL) {
+							printf("ERROR: Could not open file or file does not exist.\n");
+							exit(-1);
+						} else {
+							yyin = fopen(userFile, "r");
+						}
+				} else if (choice == 3) {
+					exit(-1);
+				} else {
+					puts("not a valid option");
+				}
+
+		} else if (argc > 1) {
+			printf("Please implement me\n");
+		}
+	} else {
+		printf("You have no ignore file.\n");
+		exit(-1);
 	}
 	token_handler();
 	
 	fclose(outputFile);
 	fclose(inputFile);
 	return 0;
+}
+
+
+void readMainMenu() {
+	char menuLine;
+	FILE *menu;
+	menu = fopen("MENU", "r");
+	if (menu == NULL) {
+		printf("ERROR: Cannot read menu file.\n");
+		exit(-1);
+	}
+
+	if (menu) {
+		while ((menuLine = fgetc(menu)) != EOF) {
+			printf("%c", menuLine);
+		}
+	}
+	fclose(menu);
 }
