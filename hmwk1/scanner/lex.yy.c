@@ -478,7 +478,7 @@ char *yytext;
 
 <BOF>
 {%
-C/C++ includes, decls and defs
+C/C+dd+ includes, decls and defs
 %}
 
 flex declarations
@@ -1809,24 +1809,56 @@ void token_handler();
 
 int main(int argc, char ** argv)
 {
+	int choice;
 
-	/*skip over program name*/
-	if ( argc > 0 ) {
-		if (argv[1] && !argv[2]) {
-			yyin = fopen ( argv[1], "r");
-			token_handler();
-		} else if(argv[1] && argv[2]) {
-			yyin = fopen ( argv[2], "r");
-			token_handler();
-		}
-	} else {
-		yyin = stdin;
+	FILE *inputFile;
+	char *userFile;
+
+	/* file output creation */
+	FILE *outputFile;
+	outputFile = fopen("ignore_output.txt", "a+");
+
+	if (outputFile == NULL) {
+		printf("ERROR: Could not create output file.\n");
+		exit(-1);
 	}
 
-	return 0;
-}
+	/*if ignore exists, open it*/
+	if (argc <= 1) {
+			printf("Please choose one of the following:\n");
+			printf("(1) Simply read from stdin/user input.\n");
+			printf("(2) Read from file.\n");
+			
+			scanf("%d", &choice);
 
-yyerror(char *errmsg) {
-	fprintf(stderr, "%s\n", errmsg);
+			if (choice == 1) {
+					puts("---------------------------");
+					puts("Type all you want, then Ctrl+C to exit");
+					puts("---------------------------");
+				yyin = stdin;
+			} else if (choice == 2) {
+					printf("%s", "Please input file name: ");
+					scanf("%s", userFile);
+
+					inputFile = fopen(userFile, "r");
+
+					if (inputFile == NULL) {
+						printf("ERROR: Could not open file or file does not exist.\n");
+						exit(-1);
+					} else {
+						yyin = fopen(userFile, "r");
+					}
+			} else {
+				puts("not a valid option");
+			}
+
+	} else if (argc > 1) {
+		printf("Please implement me\n");
+	}
+	token_handler();
+	
+	fclose(outputFile);
+	fclose(inputFile);
+	return 0;
 }
 
