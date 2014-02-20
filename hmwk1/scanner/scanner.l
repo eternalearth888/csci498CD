@@ -45,17 +45,20 @@ void token_handler();
 
 int main(int argc, char ** argv)
 {
-	++argv, --argc;
-	/* read in a file */
-	if (argc > 0) {
-		yyin = fopen(argv[0], "r");
+
+	/*skip over program name*/
+	if ( argc > 0 ) {
+		if (argv[1] && !argv[2]) {
+			yyin = fopen ( argv[1], "r");
+			token_handler();
+		} else if(argv[1] && argv[2]) {
+			yyin = fopen ( argv[2], "r");
+			token_handler();
+		}
 	} else {
 		yyin = stdin;
 	}
-//	yylex();
 
-	/* token handling code here */
-	token_handler();
 	return 0;
 }
 
