@@ -2,12 +2,14 @@
 #include <cstdlib>
 #include <cstring>
 #include <map> 
+#include <iostream>
+#include <iomanip>
 
-#include "lex.yy.c"
+extern "C" {
 
-extern char* yytext;
+extern "C" char* yytext;
 
-char* strdup(char*);
+extern "C" int yylex();
 
 void token_handler(void)
 {
@@ -60,15 +62,20 @@ void token_handler(void)
 			if (strcmp(yytext, ignoreWords[j])) {
 				foundWord = 1;			
 				break;
+			} else if (ignoreWords[j] == NULL) {
+				foundWord = 2;
+				break;
 			}
 		}
 
 #if defined(NDEBUG)
 		if (foundWord == 1) {
 			fprintf( stdout, "%03d:/%s/\n", t, yytext );
+		} else if (foundWord == 2) {
+			exit(1);
 		}
 #endif
 	}
 
 }
-
+} // "C" extern

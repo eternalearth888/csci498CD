@@ -20,20 +20,20 @@ void token_handler(void)
 
 	/*Allocate 25 words to the ignored list called ignoredWords*/
 	char **ignoreWords;
-	ignoreWords = calloc(25, sizeof(char *));
+	ignoreWords = (char **)calloc(25, sizeof(char *));
 
 	int ignoreSize = 25;
 	int ignoreCount = 0;
 
 	char *ignoreBuffer;
-	ignoreBuffer = calloc(225, sizeof(char));
+	ignoreBuffer = (char *)calloc(225, sizeof(char));
 
 	while(!feof(ignoreFile) && (fscanf(ignoreFile, "%s", ignoreBuffer) > 0)) {
 //		printf("%i\n", ignoreCount);
 
 		if (ignoreCount == ignoreSize) {
 			char **newIgnoreWords;
-			newIgnoreWords = calloc(ignoreSize*2, sizeof(char *));
+			newIgnoreWords = (char **)calloc(ignoreSize*2, sizeof(char *));
 			memcpy(newIgnoreWords, ignoreWords, ignoreSize*sizeof(char*));
 			ignoreSize*=2;	
 			free(ignoreWords);
@@ -57,12 +57,17 @@ void token_handler(void)
 			if (strcmp(yytext, ignoreWords[j])) {
 				foundWord = 1;			
 				break;
+			} else if (strcmp("no words", ignoreWords[j])) {
+				foundWord = 2;
+				break;
 			}
 		}
 
 #if defined(NDEBUG)
 		if (foundWord == 1) {
 			fprintf( stdout, "%03d:/%s/\n", t, yytext );
+		} else if (foundWord == 2) {
+			exit(1);
 		}
 #endif
 	}
