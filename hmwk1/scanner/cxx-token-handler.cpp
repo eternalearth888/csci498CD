@@ -4,6 +4,9 @@
 #include <iostream>
 #include <iomanip>
 #include <map> 
+#include <vector>
+#include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -12,6 +15,10 @@ extern "C" {
 extern "C" char* yytext;
 
 extern "C" int yylex();
+
+	bool compare(const pair<int,string> &i, const pair<int, string>&j) {
+			return i.first > j.first;
+	}
 
 	void token_handler(void)
 	{
@@ -92,9 +99,18 @@ extern "C" int yylex();
 			}
 #endif			
 		}
-			for (findWord = wordCount.begin(); findWord != wordCount.end(); ++findWord) {
-				cout << findWord->first << " => " << findWord->second << '\n';
-			}
 
+			vector<pair<int, string> > sortCount;
+
+			for(findWord = wordCount.begin(); findWord != wordCount.end(); ++findWord) {
+				sortCount.push_back(make_pair(findWord->second, findWord->first));
+			}	
+
+			sort(sortCount.begin(), sortCount.end(), compare);
+		
+
+			for(int i = 0; i < sortCount.size(); i++) {
+				cout << "( " << sortCount[i].first << " , " << sortCount[i].second << " )" << endl;
+			}
 	}
 } // "C" extern
