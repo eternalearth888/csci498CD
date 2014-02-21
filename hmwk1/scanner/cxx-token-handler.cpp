@@ -3,6 +3,7 @@
 #include <cstring>
 #include <map> 
 
+#include "lex.yy.c"
 
 extern char* yytext;
 
