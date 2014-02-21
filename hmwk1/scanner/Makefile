@@ -1,12 +1,12 @@
 LEX=flex
 LEXLIB=-lfl
-CFLAGS=-DNDEBUG -std=c99
+CFLAGS=-DNDEBUG 
 CXXFLAGS=${CFLAGS}
 
 all:: capp cxxapp
 
 capp: lex.yy.o token-handler.o
-	${CC} -o $@ $^ ${LEXLIB}
+	${CC} -std=c99 -o $@ $^ ${LEXLIB}
 
 cxxapp: lex.yy.o cxx-token-handler.o
 	${CXX} -o $@ $^ ${LEXLIB}

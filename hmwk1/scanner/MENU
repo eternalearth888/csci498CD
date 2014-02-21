@@ -1,6 +1,0 @@
-Please choose one of the following:
---------------------------------------
-(1) Simply read from stdin/user input.
-(2) Read from file.
-(3) Exit
---------------------------------------
