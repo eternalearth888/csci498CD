@@ -1809,32 +1809,8 @@ void token_handler();
 
 int main(int argc, char ** argv)
 {
-	int choice;
-
-	FILE *outputFile;
-
-	outputFile = fopen("OUTPUT", "a+");
-
-	if (outputFile == NULL) {
-		printf("ERROR: Could not create output file.\n");
-		exit(-1);
-	}
-
-	/*if ignore exists, open it*/
-	FILE *ignoreFile;
-	ignoreFile = fopen("IGNORE", "r");
-	
-	char **ignoreWords;
-
-	if (ignoreFile != NULL) {
-		if (argc > 0) {
-
-		}
-	}
 	token_handler();
 	
-	fclose(outputFile);
-	fclose(ignoreFile);
 	return 0;
 }
 
